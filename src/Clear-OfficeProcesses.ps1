@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Finaliza processos do Office deixados em segundo plano.
 .DESCRIPTION

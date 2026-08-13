@@ -1,12 +1,16 @@
-<#
+﻿<#
 .SYNOPSIS
-    Auditoria Forense - Marcelo Soares (v2.4 Final)
+    Script para Triagem Forense Computacional, Resposta a Incidentes (IR) e Auditoria de Conformidade em Segurança da Informação.
 .DESCRIPTION
     Busca profunda em PDF, Word e Excel usando motores nativos.
     Inclui cronometro, quarentena e compactacao 7-Zip.
+.NOTES
+    Autor: Marcelo Soares
+    Data: Agosto/2026
+    Versão: 1.1 (DevSecOps - Encoding Fixed)
 #>
 param(
-    [Parameter(Mandatory=$true)][string[]]$Termos,
+    [Parameter(Mandatory = $true)][string[]]$Termos,
     [string]$CaminhoAlvo = ".",
     [string]$RelatorioNome = "Relatorio_Forense_Final.html",
     [switch]$AtivarQuarentena,
@@ -34,7 +38,8 @@ Write-Host "--- Iniciando Auditoria Forense em $($Arquivos.Count) arquivos ---" 
 try {
     $word = New-Object -ComObject Word.Application; $word.Visible = $false
     $excel = New-Object -ComObject Excel.Application; $excel.Visible = $false
-} catch { Write-Warning "Componentes Office não disponíveis. A busca será limitada a texto simples." }
+}
+catch { Write-Warning "Componentes Office não disponíveis. A busca será limitada a texto simples." }
 
 # --- 2. VARREDURA ---
 foreach ($File in $Arquivos) {
@@ -84,16 +89,17 @@ foreach ($File in $Arquivos) {
                 Move-Item -Path $File.FullName -Destination $Destino -Force
             }
             $Resultados.Add([PSCustomObject]@{
-                DataHora   = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
-                Arquivo    = $File.Name
-                Tipo       = $TipoIncidente
-                Acao       = $StatusAcao
-                Caminho    = $File.FullName
-                SHA256     = $Hash
-            })
+                    DataHora = Get-Date -Format "dd/MM/yyyy HH:mm:ss"
+                    Arquivo  = $File.Name
+                    Tipo     = $TipoIncidente
+                    Acao     = $StatusAcao
+                    Caminho  = $File.FullName
+                    SHA256   = $Hash
+                })
             Write-Host "[!] $StatusAcao : $($File.Name)" -ForegroundColor Yellow
         }
-    } catch { 
+    }
+    catch { 
         # Log silencioso de erros de abertura
     }
 }
