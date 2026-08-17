@@ -7,7 +7,7 @@
 .NOTES
     Autor: Marcelo Soares
     Data: Agosto/2026
-    Versão: 1.1 (DevSecOps - Encoding Fixed)
+    Versão: 1.2 (DevSecOps - PSScriptAnalyzer Clean)
 #>
 param(
     [Parameter(Mandatory = $true)][string[]]$Termos,
@@ -32,14 +32,16 @@ if ($AtivarQuarentena -and !(Test-Path $QuarentenaPath)) {
 
 $Arquivos = Get-ChildItem -Path $CaminhoAlvo -Include *.doc*, *.xls*, *.ppt*, *.pdf, *.txt, *.csv, *.log, *.crypt* -Recurse -ErrorAction SilentlyContinue
 
-Write-Host "--- Iniciando Auditoria Forense em $($Arquivos.Count) arquivos ---" -ForegroundColor Cyan
+Write-Output "--- Iniciando Auditoria Forense em $($Arquivos.Count) arquivos ---"
 
 # Inicialização dos Motores Office
 try {
     $word = New-Object -ComObject Word.Application; $word.Visible = $false
     $excel = New-Object -ComObject Excel.Application; $excel.Visible = $false
 }
-catch { Write-Warning "Componentes Office não disponíveis. A busca será limitada a texto simples." }
+catch { 
+    Write-Warning "Componentes Office não disponíveis. A busca será limitada a texto simples." 
+}
 
 # --- 2. VARREDURA ---
 foreach ($File in $Arquivos) {
@@ -96,11 +98,12 @@ foreach ($File in $Arquivos) {
                     Caminho  = $File.FullName
                     SHA256   = $Hash
                 })
-            Write-Host "[!] $StatusAcao : $($File.Name)" -ForegroundColor Yellow
+            Write-Output "[!] $StatusAcao : $($File.Name)"
         }
     }
     catch { 
-        # Log silencioso de erros de abertura
+        # Trata a exceção gravando um aviso em caso de falha na leitura do arquivo
+        Write-Verbose "Erro ao processar o arquivo $($File.FullName): $_"
     }
 }
 
@@ -125,5 +128,5 @@ $Html += ($Resultados | ConvertTo-Html -Fragment)
 $Html += "</div></body></html>"
 $Html | Out-File $RelatorioNome -Encoding UTF8
 
-Write-Host "`n--- Auditoria Concluida em $TotalSegundos segundos ---" -ForegroundColor Green
-Write-Host "Relatorio disponivel em: $RelatorioNome" -ForegroundColor Green
+Write-Output "`n--- Auditoria Concluida em $TotalSegundos segundos ---"
+Write-Output "Relatorio disponivel em: $RelatorioNome"
