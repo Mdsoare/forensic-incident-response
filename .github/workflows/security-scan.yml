@@ -24,10 +24,11 @@ jobs:
         run: |
           Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
           $results = @(Invoke-ScriptAnalyzer -Path ./ -Recurse -Severity Warning, Error)
-          $results | Format-Table -Autosize
-          if ($results.Count -gt 0) { 
-              Write-Error "Foram encontradas $null inconformidades no PSScriptAnalyzer."
-              exit 1 
+          
+          if ($results.Count -gt 0) {
+              $results | Select-Object ScriptName, Line, Message, RuleName | Format-List
+              Write-Error "Foram encontradas $($results.Count) inconformidades no PSScriptAnalyzer."
+              exit 1
           }
 
   sca-osv:
