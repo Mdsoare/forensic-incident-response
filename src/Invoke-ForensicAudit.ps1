@@ -39,8 +39,8 @@ try {
     $word = New-Object -ComObject Word.Application; $word.Visible = $false
     $excel = New-Object -ComObject Excel.Application; $excel.Visible = $false
 }
-catch { 
-    Write-Warning "Componentes Office não disponíveis. A busca será limitada a texto simples." 
+catch {
+    Write-Warning "Componentes Office não disponíveis. A busca será limitada a texto simples."
 }
 
 # --- 2. VARREDURA ---
@@ -101,7 +101,7 @@ foreach ($File in $Arquivos) {
             Write-Output "[!] $StatusAcao : $($File.Name)"
         }
     }
-    catch { 
+    catch {
         # Trata a exceção gravando um aviso em caso de falha na leitura do arquivo
         Write-Verbose "Erro ao processar o arquivo $($File.FullName): $_"
     }

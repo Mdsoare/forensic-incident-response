@@ -8,7 +8,7 @@
 
 $Processos = @("EXCEL", "WINWORD", "POWERPNT")
 
-Write-Output "--- Iniciando limpeza de processos Office ---" -ForegroundColor Cyan
+Write-Host "--- Iniciando limpeza de processos Office ---" -ForegroundColor Cyan
 
 foreach ($Nome in $Processos) {
     # Busca processos que nao tem uma janela principal (indicativo de execucao via script)
@@ -18,14 +18,14 @@ foreach ($Nome in $Processos) {
         foreach ($i in $Instancias) {
             try {
                 Stop-Process -Id $i.Id -Force
-                Write-Output "[OK] Processo $Nome (PID: $($i.Id)) encerrado." -ForegroundColor Green
+                Write-Host "[OK] Processo $Nome (PID: $($i.Id)) encerrado." -ForegroundColor Green
             } catch {
                 Write-Warning "Nao foi possivel encerrar $Nome (PID: $($i.Id))."
             }
         }
     } else {
-        Write-Output "Nenhuma instancia 'zumbi' de $Nome encontrada." -ForegroundColor Gray
+        Write-Host "Nenhuma instancia 'zumbi' de $Nome encontrada." -ForegroundColor Gray
     }
 }
 
-Write-Output "--- Limpeza concluida ---" -ForegroundColor Cyan
+Write-Host "--- Limpeza concluida ---" -ForegroundColor Cyan
