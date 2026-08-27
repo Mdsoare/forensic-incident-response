@@ -170,14 +170,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configurar Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.11"
+
+      - name: Instalar Semgrep
+        run: pip install --no-cache-dir semgrep
+
       - name: Executar Semgrep Scan
         run: |
-          pip install semgrep
           semgrep scan \
-            --config=p/owasp-top-ten \
+            --config=p/bash \
             --sarif \
             --output=semgrep.sarif \
-            || true
+            . || true
 
       - name: Tratar e Validar SARIF do Semgrep
         id: check_sarif
