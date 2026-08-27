@@ -1,7 +1,7 @@
 # 🛡️ Forensic Incident Response Framework (DFIR)
 
 <!-- Badges do Topo -->
-[![Security Compliance](https://img.shields.io/badge/Security-Local%20Only%20%2F%20Zero%20Trust-green.svg)](#segurança-e-compliance-devsecops)
+[![Security Compliance](https://img.shields.io/badge/Security-Local%20Only%20%2F%20Zero%20Trust-green.svg)](#segurança-e-conformidade)
 [![CI Pipeline](https://github.com/Mdsoare/forensic-incident-response/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Mdsoare/forensic-incident-response/actions/workflows/security-scan.yml)
 [![Security Rating](https://img.shields.io/badge/Security-DevSecOps%20Hardened-green?style=flat&logo=github)](https://github.com/Mdsoare/forensic-incident-response/security/code-scanning)
 ![Code Style: PSScriptAnalyzer](https://img.shields.io/badge/code%20style-PSScriptAnalyzer-5391FE.svg?logo=powershell)
@@ -15,7 +15,7 @@
 
 ---
 
-Um framework automatizado em PowerShell desenvolvido para **Triagem Forense Computacional**, **Resposta a Incidentes (IR)** e **Auditoria de Conformidade em Segurança da Informação**. 
+Um framework automatizado em PowerShell desenvolvido para **Triagem Forense Computacional**, **Resposta a Incidentes (IR)** e **Auditoria de Conformidade em Segurança da Informação**.
 
 O objetivo principal desta suíte é permitir a busca profunda e automatizada por Indicadores de Comprometimento (IoCs), vazamento de dados sensíveis e vestígios de artefatos maliciosos (como extensões de ransomware) em sistemas de arquivos Windows, gerando evidências criptografadas e relatórios gerenciais prontos para auditoria.
 
@@ -40,7 +40,7 @@ forensic-incident-response/
 ├── README.md
 └── src/
     ├── .gitignore
-    ├── Invoke-ForensicAudit.ps1   # Engine principal de Auditoria Forense
+    ├── Invoke-ForensicAudit.ps1    # Engine principal de Auditoria Forense
     └── Clear-OfficeProcesses.ps1  # Utilitário de limpeza de processos COM
 ```
 
@@ -107,4 +107,5 @@ O script gera um relatório HTML moderno com visual escuro/corporativo contendo:
 Este projeto foi construído alinhado às boas práticas de **Governança da Segurança da Informação (ISO/IEC 27001)** e normas de **Privacidade de Dados (LGPD / GDPR)**, focado no suporte a investigações de segurança interna e pronta resposta a incidentes de vazamento de dados ou infecções por malware.
 
 ---
+
 *Desenvolvido por **Marcelo Soares** | Especialista em Segurança da Informação e Computação Forense.*
