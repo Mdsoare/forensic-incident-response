@@ -1,14 +1,14 @@
 # 🛡️ Forensic Incident Response Framework (DFIR)
 
 <!-- Badges do Topo -->
-[![Security Compliance](https://img.shields.io/badge/Security-Local%20Only%20%2F%20Zero%20Trust-green.svg)](#segurança-e-conformidade)
-[![CI Pipeline](https://github.com/Mdsoare/forensic-incident-response/actions/workflows/security-scan.yml/badge.svg)](https://github.com/Mdsoare/forensic-incident-response/actions/workflows/security-scan.yml)
-[![Security Rating](https://img.shields.io/badge/Security-DevSecOps%20Hardened-green?style=flat&logo=github)](https://github.com/Mdsoare/forensic-incident-response/security/code-scanning)
+![Security Compliance](https://img.shields.io/badge/Security-Local%20Only%20%2F%20Zero%20Trust-green.svg)
+![CI Pipeline](https://github.com/Mdsoare/forensic-incident-response/actions/workflows/security-scan.yml/badge.svg)
+![Security Rating](https://img.shields.io/badge/Security-DevSecOps%20Hardened-green?style=flat&logo=github)
 ![Code Style: PSScriptAnalyzer](https://img.shields.io/badge/code%20style-PSScriptAnalyzer-5391FE.svg?logo=powershell)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 <!-- Tech Stack & DevSecOps Ecosystem -->
-[![PowerShell](https://img.shields.io/badge/PowerShell-7.0%2B-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](https://learn.microsoft.com/powershell/)
+![PowerShell](https://img.shields.io/badge/PowerShell-7.0%2B-5391FE?style=for-the-badge&logo=powershell&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Dependabot](https://img.shields.io/badge/Dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
 ![SAST & SCA](https://img.shields.io/badge/DevSecOps-SAST%20%26%20SCA-red?style=for-the-badge&logo=github-actions&logoColor=white)
@@ -49,9 +49,13 @@ forensic-incident-response/
 ## 🚀 Como Usar
 
 ### Pré-requisitos
+
 - **PowerShell 5.1** ou superior.
+
 - **Privilégios de Administrador** (necessário para acesso a diretórios de sistema e instanciação de objetos COM).
+
 - **Microsoft Office** instalado na máquina auditada.
+
 - **7-Zip** instalado no caminho padrão (`C:\Program Files\7-Zip\7z.exe`) — *Necessário para quarentena criptografada*.
 
 ---
@@ -85,7 +89,9 @@ Após execuções intensivas ou em caso de interrupção abrupta de rotinas COM,
 ## 📊 Exemplo do Relatório Gerado (HTML)
 
 O script gera um relatório HTML moderno com visual escuro/corporativo contendo:
+
 - **Metadados:** Perito responsável, tempo total de execução e termos pesquisados.
+
 - **Tabela de Evidências:** Data/Hora, Nome do Arquivo, Tipo de Incidente, Ação Executada, Caminho Completo e Hash SHA256.
 
 ---
@@ -96,7 +102,7 @@ O script gera um relatório HTML moderno com visual escuro/corporativo contendo:
 | :--- | :---: | :---: | :--- |
 | `-Termos` | `String[]` | **Sim** | Lista de strings ou extensões a serem pesquisadas no conteúdo ou nome do arquivo. |
 | `-CaminhoAlvo` | `String` | Não | Diretório inicial da varredura. Padrão: pasta atual (`.`). |
-| `-RelatorioNome`| `String` | Não | Nome do arquivo HTML de saída. Padrão: `Relatorio_Forense_Final.html`. |
+| `-RelatorioNome` | `String` | Não | Nome do arquivo HTML de saída. Padrão: `Relatorio_Forense_Final.html`. |
 | `-AtivarQuarentena` | `Switch` | Não | Quando informado, isola e compacta os arquivos detectados. |
 | `-SenhaZip` | `String` | Não | Senha utilizada para criptografar o pacote de evidências 7-Zip. |
 
